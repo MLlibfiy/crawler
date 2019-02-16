@@ -20,7 +20,7 @@ class JingDongSpider(scrapy.Spider):
     def start_requests(self):
 
         # 爬去所有页面
-        for page in range(1, 300, 2):
+        for page in range(1, 5, 2):
             url = self.url + str(page)
             yield scrapy.Request(url=url, callback=self.parse)
 
@@ -61,16 +61,14 @@ class JingDongSpider(scrapy.Spider):
             # ./   从当前标签开始寻找
             id = obj.xpath("./property/number/@value")[0]
             str = ",".join(obj.xpath("./property/string/text()"))
-
-            time.sleep(random.randint(1, 3))
-
             # 请求产品评价
 
             for page in range(1, 100):
+
+
+
                 url = "https://sclub.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98vv563" \
                       "&productId=%s&score=0&sortType=5&page=%d&pageSize=10&isShadowSku=0&rid=0&fold=1" % (id, page)
-
-                time.sleep(random.randint(1, 3))
                 yield scrapy.Request(url=url, callback=self.parse_comment)
 
             # 获取商品价格和基本的信息
@@ -98,6 +96,9 @@ class JingDongSpider(scrapy.Spider):
         yield item
 
     def parse_comment(self, response):
+
+        time.sleep(1)
+
         p = re.compile(r'[(](.*)[)]', re.S)  # 贪婪匹配
         r = re.findall(p, response.text)
         content = json.loads(r[0])
