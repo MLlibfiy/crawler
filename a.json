@@ -1,36 +1,220 @@
-jQuery9223306({
-  "CommentsCount": [
-    {
-      "SkuId": 100000342749,
-      "ProductId": 100000342749,
-      "ShowCount": 900,
-      "ShowCountStr": "900+",
-      "CommentCountStr": "2.7万+",
-      "CommentCount": 27000,
-      "AverageScore": 5,
-      "DefaultGoodCountStr": "2.1万+",
-      "DefaultGoodCount": 21000,
-      "GoodCountStr": "2.6万+",
-      "GoodCount": 26000,
-      "AfterCount": 90,
-      "OneYear": 0,
-      "AfterCountStr": "90+",
-      "VideoCount": 80,
-      "VideoCountStr": "80+",
-      "GoodRate": 0.99,
-      "GoodRateShow": 99,
-      "GoodRateStyle": 148,
-      "GeneralCountStr": "60+",
-      "GeneralCount": 60,
-      "GeneralRate": 0.0020,
-      "GeneralRateShow": 0,
-      "GeneralRateStyle": 0,
-      "PoorCountStr": "100+",
-      "PoorCount": 100,
-      "SensitiveBook": 0,
-      "PoorRate": 0.0080,
-      "PoorRateShow": 1,
-      "PoorRateStyle": 2
-    }
-  ]
-});
+{
+  "stock": {
+    "isWalMar": false,
+    "isJDexpress": "0",
+    "self_D": {
+      "vender": "联想电脑京东自营旗舰店",
+      "id": 1000000157,
+      "df": null,
+      "po": "false",
+      "deliver": "联想电脑京东自营旗舰店",
+      "cg": "670:671:673",
+      "url": "http://lenovo1.jd.com",
+      "vid": 1000000157,
+      "type": 0,
+      "linkphone": ""
+    },
+    "isPlus": false,
+    "serviceInfo": "由 <span class='hl_red'>京东</span> 发货, 并提供售后服务. ",
+    "cla": [],
+    "channel": 1,
+    "PopType": 0,
+    "dcashDesc": "",
+    "freshEdi": null,
+    "isSam": false,
+    "area": {
+      "countyName": "三环以内",
+      "success": true,
+      "townName": "",
+      "cityName": "朝阳区",
+      "provinceName": "北京"
+    },
+    "nationallySetWare": null,
+    "weightValue": "9.1kg",
+    "ab": "-1",
+    "sr": [
+      {
+        "iconTip": "",
+        "iconSrc": "自营放心购",
+        "helpLink": "//",
+        "showName": "自营放心购",
+        "baseServiceIconResults": [
+          {
+            "helpLink": "https://sale.jd.com/act/eETKmcQozLbv.html",
+            "showName": "3年以上质保",
+            "iconType": 2,
+            "resultCode": 1,
+            "iconTip": "商品在质保期内出现性能故障，可享受原厂质保。",
+            "iconSrc": "3年以上质保",
+            "picUrl": "https:///img12.360buyimg.com/cms/jfs/t1/4671/16/2601/1307/5b972bd1Ed81babd1/899ed641cc16f6fb.png",
+            "iconCode": "service_3yearcczb"
+          }
+        ],
+        "iconCode": "service_zyfangxingou",
+        "showIconResults": [
+          {
+            "helpLink": "https://sale.jd.com/act/qaoDHLQEveG.html",
+            "showName": "免举证退换货",
+            "iconType": 3,
+            "resultCode": 1,
+            "iconTip": "15天内性能故障，京东提供原厂授权的检测服务。",
+            "iconSrc": "免举证退换货",
+            "picUrl": "https://img13.360buyimg.com/cms/jfs/t1/5593/18/2646/1401/5b972bf7E9f61eacd/e3b32bbad0e5355a.png",
+            "iconCode": "service_mjzthh"
+          },
+          {
+            "helpLink": "https://sale.jd.com/act/eETKmcQozLbv.html",
+            "showName": "3年以上质保",
+            "iconType": 2,
+            "resultCode": 1,
+            "iconTip": "商品在质保期内出现性能故障，可享受原厂质保。",
+            "iconSrc": "3年以上质保",
+            "picUrl": "https:///img12.360buyimg.com/cms/jfs/t1/4671/16/2601/1307/5b972bd1Ed81babd1/899ed641cc16f6fb.png",
+            "iconCode": "service_3yearcczb"
+          }
+        ],
+        "iconType": 0,
+        "resultCode": 1,
+        "picUrl": "//",
+        "featureIconResults": [
+          {
+            "helpLink": "https://sale.jd.com/act/qaoDHLQEveG.html",
+            "showName": "免举证退换货",
+            "iconType": 3,
+            "resultCode": 1,
+            "iconTip": "15天内性能故障，京东提供原厂授权的检测服务。",
+            "iconSrc": "免举证退换货",
+            "picUrl": "https://img13.360buyimg.com/cms/jfs/t1/5593/18/2646/1401/5b972bf7E9f61eacd/e3b32bbad0e5355a.png",
+            "iconCode": "service_mjzthh"
+          }
+        ]
+      }
+    ],
+    "promiseYX": {
+      "helpLink": "http://help.jd.com/user/issue/126-3780.html  ",
+      "showName": "支持7天无理由退货",
+      "iconType": 0,
+      "resultCode": 1,
+      "iconTip": "支持7天无理由退货",
+      "iconSrc": "7天无理由退货",
+      "picUrl": "\\",
+      "iconCode": "service_qitiantuihuo"
+    },
+    "skuState": 1,
+    "ad": "-1",
+    "realSkuId": 7786136,
+    "promiseResult": "23:00前下单,预计<b>明天(02月17日)</b>送达",
+    "ec": "-1",
+    "ArrivalDate": "",
+    "eir": [
+      {
+        "helpLink": "//help.jd.com/user/issue/103-983.html",
+        "showName": "99元免基础运费(20kg内)",
+        "iconType": 0,
+        "resultCode": 1,
+        "iconTip": "所选地址自营订单满99元免基础运费(20kg内)，超出重量加收1元/kg续重运费。",
+        "iconSrc": "99元免基础运费(20kg内)",
+        "picUrl": "//static.360buyimg.com/item/assets/picon/mianyunfei.png",
+        "iconCode": "free_delivery_zhong"
+      }
+    ],
+    "StockState": 33,
+    "af": "-1",
+    "pr": {
+      "promiseResult": "23:00前下单,预计<b>明天(02月17日)</b>送达",
+      "resultCode": 1
+    },
+    "ae": "-1",
+    "IsPurchase": true,
+    "promiseMark": "支持7天无理由退货",
+    "ag": "-1",
+    "dcId": "6",
+    "v": "0",
+    "ir": [
+      {
+        "helpLink": "//help.jd.com/user/issue/103-983.html",
+        "showName": "京准达",
+        "iconType": 0,
+        "resultCode": 1,
+        "iconTip": "选择京准达服务，可以指定精确时间点收货哦。",
+        "iconSrc": "京准达",
+        "picUrl": "//static.360buyimg.com/item/assets/picon/jingzhunda.png",
+        "iconCode": "sendpay_zhun"
+      },
+      {
+        "helpLink": "//help.jd.com/user/issue/103-983.html",
+        "showName": "211限时达",
+        "iconType": 0,
+        "resultCode": 1,
+        "iconTip": "上午下单，下午送达",
+        "iconSrc": "211限时达",
+        "picUrl": "//static.360buyimg.com/item/assets/picon/zhongbiao.png",
+        "iconCode": "sendpay_211"
+      },
+      {
+        "helpLink": "//help.jd.com/user/issue/103-983.html",
+        "showName": "自提",
+        "iconType": 0,
+        "resultCode": 1,
+        "iconTip": "我们提供多种自提服务，包括京东自提点、京东校园派、自助提货柜、移动自提车等服务。",
+        "iconSrc": "自提",
+        "picUrl": "//static.360buyimg.com/item/assets/picon/shoutixiang.png",
+        "iconCode": "special_ziti"
+      }
+    ],
+    "Dc": null,
+    "vd": null,
+    "afsCode": 0,
+    "venderType": null,
+    "Dti": null,
+    "sid": "133",
+    "m": "0",
+    "suitStock": {
+      "7786136": 33,
+      "1885374": 33
+    },
+    "isSopUseSelfStock": "0",
+    "code": 1,
+    "rn": -1,
+    "sidDely": "133",
+    "rfg": 0,
+    "support": [
+      {
+        "iconTip": "免费提供闲置物品回收服务，完成回收后可获得京东E卡或现金。",
+        "showName": "高价回收，享补贴",
+        "helpLink": "//sale.jd.com/act/02ZCO1Nqk7eALJw.html?s=1&skuId=7786136",
+        "id": "old2new"
+      }
+    ],
+    "yjhxMap": {
+      "IsSXQJ-1": {
+        "exceptAttr": "YuShou,isKO,isJMa",
+        "attr": "IsSXQJ-1",
+        "url": "//huishou.jd.com/huanxin?s=1",
+        "urlName": "以旧换新-闲置换钱，购新0门槛",
+        "type": 2,
+        "tips": "购买新品时可同步进行闲置物品回收，将闲置物品卖了换钱用于消费或提现。"
+      },
+      "IsSXQJ": {
+        "exceptAttr": "",
+        "attr": "IsSXQJ",
+        "url": "//sale.jd.com/act/02ZCO1Nqk7eALJw.html?s=1",
+        "urlName": "高价回收，享补贴",
+        "type": 1,
+        "tips": "免费提供闲置物品回收服务，完成回收后可获得京东E卡或现金。"
+      }
+    },
+    "ac": "-1",
+    "Ext": "isdangergoods:0,SendService:0,isOverseaPurchase:0,storeProperty:0,tsfw:F,SoldOversea:7,is7ToReturn:1",
+    "StockStateName": "现货",
+    "stockDesc": "<strong>有货</strong>",
+    "jdPrice": {
+      "op": "6999.00",
+      "m": "7299.00",
+      "id": "7786136",
+      "p": "6999.00"
+    },
+    "rid": null
+  },
+  "choseSuit": []
+}

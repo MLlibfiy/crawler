@@ -2,32 +2,40 @@ import scrapy
 from bs4 import BeautifulSoup
 from lxml import etree
 import js2xml
-
 import re
 import json
+import time
+from crawler.items import Comment, ItemInfo
 
-from crawler.items import Comment
+import random
+
 
 class JingDongSpider(scrapy.Spider):
     name = "JingDongSpider"
 
-    url = "https://search.jd.com/Search?keyword=%E7%94%B5%E8%84%91&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&wq=dian%27nao&page=5"
+    keyword = "手机"
+
+    url = "https://search.jd.com/Search?keyword=%E7%94%B5%E8%84%91&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&wq=dian%27nao&page="
 
     def start_requests(self):
-        yield scrapy.Request(url=self.url, callback=self.parse)
+
+        # 爬去所有页面
+        for page in range(1, 300, 2):
+            url = self.url + str(page)
+            yield scrapy.Request(url=url, callback=self.parse)
 
     # 获取到搜索页面的所有商品列表
     def parse(self, response):
         items = response.xpath("//li[@class='gl-item']/@data-sku").extract()
 
-        #for id in items:
-        url = "https://item.jd.com/%s.html" % items[0]
-        print(url)
+        for id in items:
+            url = "https://item.jd.com/%s.html" % id
 
-        yield scrapy.Request(url=url, callback=self.parse_item_list)
+            # 睡一会，防止被封
+            #time.sleep(random.randint(1, 3))
+            yield scrapy.Request(url=url, callback=self.parse_item_list)
 
-
-    #爬取这个商品的所有型号
+    # 爬取这个商品的所有型号
     def parse_item_list(self, response):
         # html --> xml 对象
         soup = BeautifulSoup(response.text, 'lxml')
@@ -54,11 +62,42 @@ class JingDongSpider(scrapy.Spider):
             id = obj.xpath("./property/number/@value")[0]
             str = ",".join(obj.xpath("./property/string/text()"))
 
+            time.sleep(random.randint(1, 3))
 
-            url = "https://sclub.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98vv563&productId=%s&score=0&sortType=5&page=1&pageSize=10&isShadowSku=0&rid=0&fold=1" % id
+            # 请求产品评价
+
+            for page in range(1, 100):
+                url = "https://sclub.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98vv563" \
+                      "&productId=%s&score=0&sortType=5&page=%d&pageSize=10&isShadowSku=0&rid=0&fold=1" % (id, page)
+
+                time.sleep(random.randint(1, 3))
+                yield scrapy.Request(url=url, callback=self.parse_comment)
+
+            # 获取商品价格和基本的信息
+            url = "https://c0.3.cn/stock?skuId=%s&cat=9987,653,655&venderId=1000004123&area=1_72_2799_0" % id
             yield scrapy.Request(url=url, callback=self.parse_info)
 
+    # 获取商品价格
     def parse_info(self, response):
+        content = json.loads(response.text)
+        # # 获取评价列表
+        price = content['stock']['jdPrice']['p']
+        id = content['stock']['realSkuId']
+        StockStateName = content['stock']['StockStateName']
+        vender = content['stock']['self_D']["vender"]
+
+        item = ItemInfo()
+        item["price"] = price
+        item["id"] = id
+        item["StockStateName"] = StockStateName
+        item["vender"] = vender
+
+        # 标记，区分多个item
+        item["flag"] = "info"
+
+        yield item
+
+    def parse_comment(self, response):
         p = re.compile(r'[(](.*)[)]', re.S)  # 贪婪匹配
         r = re.findall(p, response.text)
         content = json.loads(r[0])
@@ -79,15 +118,17 @@ class JingDongSpider(scrapy.Spider):
             referenceName = comment["referenceName"]
 
             item['id'] = id
-            item['score']  = score
-            item['nickname']  = nickname
-            item['productColor']  = productColor
-            item['productSize']  = productSize
-            item['userClientShow']  = userClientShow
-            item['userLevelName']  = userLevelName
-            item['content']  = content
-            item['referenceName']  = referenceName
+            item['score'] = score
+            item['nickname'] = nickname
+            item['productColor'] = productColor
+            item['productSize'] = productSize
+            item['userClientShow'] = userClientShow
+            item['userLevelName'] = userLevelName
+            item['content'] = content
+            item['referenceName'] = referenceName
 
+            # 标记，区分多个item
+            item["flag"] = "comment"
 
-            #返回给pipeline 处理
+            # 返回给pipeline 处理
             yield item

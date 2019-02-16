@@ -9,6 +9,7 @@ import scrapy
 
 
 class Comment(scrapy.Item):
+    flag = scrapy.Field()
     id = scrapy.Field()
     score = scrapy.Field()
     nickname = scrapy.Field()
@@ -18,3 +19,11 @@ class Comment(scrapy.Item):
     userLevelName = scrapy.Field()
     content = scrapy.Field()
     referenceName = scrapy.Field()
+
+
+class ItemInfo(scrapy.Item):
+    flag = scrapy.Field()
+    price = scrapy.Field()
+    id = scrapy.Field()
+    StockStateName = scrapy.Field()
+    vender = scrapy.Field()
