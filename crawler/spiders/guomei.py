@@ -59,11 +59,10 @@ class GuoMeiSpider(scrapy.Spider):
                 yield scrapy.Request(url=url, headers=self.head, callback=self.parse_info)
 
                 # 爬取商品评价
-
                 for page in range(30):
                     url = "https://ss.gome.com.cn/item/v1/prdevajsonp/appraiseNew/%s/%d/all/0/3997/flag/appraise/"
                     url = url % (pid, page)
-                    yield scrapy.Request(url=url, headers=self.head, callback=self.parse_info)
+                    yield scrapy.Request(url=url, headers=self.head, callback=self.parse_comment)
 
     # 获取商品评价回调函数
     def parse_comment(self, response):
