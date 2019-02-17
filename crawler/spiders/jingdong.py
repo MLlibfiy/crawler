@@ -19,7 +19,7 @@ class JingDongSpider(scrapy.Spider):
 
     def start_requests(self):
 
-        # 爬去所有页面
+        # 爬去所有页面，最大到300
         for page in range(1, 5, 2):
             url = self.url + str(page)
             yield scrapy.Request(url=url, callback=self.parse)
@@ -31,8 +31,7 @@ class JingDongSpider(scrapy.Spider):
         for id in items:
             url = "https://item.jd.com/%s.html" % id
 
-            # 睡一会，防止被封
-            #time.sleep(random.randint(1, 3))
+
             yield scrapy.Request(url=url, callback=self.parse_item_list)
 
     # 爬取这个商品的所有型号
@@ -61,23 +60,26 @@ class JingDongSpider(scrapy.Spider):
             # ./   从当前标签开始寻找
             id = obj.xpath("./property/number/@value")[0]
             str = ",".join(obj.xpath("./property/string/text()"))
-            # 请求产品评价
-
-            for page in range(1, 100):
-
-
-
-                url = "https://sclub.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98vv563" \
-                      "&productId=%s&score=0&sortType=5&page=%d&pageSize=10&isShadowSku=0&rid=0&fold=1" % (id, page)
-                yield scrapy.Request(url=url, callback=self.parse_comment)
 
             # 获取商品价格和基本的信息
             url = "https://c0.3.cn/stock?skuId=%s&cat=9987,653,655&venderId=1000004123&area=1_72_2799_0" % id
             yield scrapy.Request(url=url, callback=self.parse_info)
 
+            # 睡一会，防止被封
+            #time.sleep(random.randint(1, 3))
+
+            # 请求产品评价,最大取100页
+            for page in range(1, 10):
+
+                url = "https://sclub.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98vv563" \
+                      "&productId=%s&score=0&sortType=5&page=%d&pageSize=10&isShadowSku=0&rid=0&fold=1" % (id, page)
+                yield scrapy.Request(url=url, callback=self.parse_comment)
+
+
+
     # 获取商品价格
     def parse_info(self, response):
-        content = json.loads(response.text)
+        content = json.loads(response.text.encode("iso-8859-1").decode("gbk"))
         # # 获取评价列表
         price = content['stock']['jdPrice']['p']
         id = content['stock']['realSkuId']
@@ -102,6 +104,9 @@ class JingDongSpider(scrapy.Spider):
         p = re.compile(r'[(](.*)[)]', re.S)  # 贪婪匹配
         r = re.findall(p, response.text)
         content = json.loads(r[0])
+
+        productId = content['productCommentSummary']["productId"]
+
         # # 获取评价列表
         comments = content['comments']
 
@@ -119,6 +124,7 @@ class JingDongSpider(scrapy.Spider):
             referenceName = comment["referenceName"]
 
             item['id'] = id
+            item["productId"] = productId
             item['score'] = score
             item['nickname'] = nickname
             item['productColor'] = productColor

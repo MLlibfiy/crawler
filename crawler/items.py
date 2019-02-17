@@ -11,6 +11,7 @@ import scrapy
 class Comment(scrapy.Item):
     flag = scrapy.Field()
     id = scrapy.Field()
+    productId = scrapy.Field()
     score = scrapy.Field()
     nickname = scrapy.Field()
     productColor = scrapy.Field()
