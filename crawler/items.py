@@ -20,6 +20,7 @@ class Comment(scrapy.Item):
     userLevelName = scrapy.Field()
     content = scrapy.Field()
     referenceName = scrapy.Field()
+    referenceTime = scrapy.Field()
 
 
 class ItemInfo(scrapy.Item):
@@ -28,3 +29,5 @@ class ItemInfo(scrapy.Item):
     id = scrapy.Field()
     StockStateName = scrapy.Field()
     vender = scrapy.Field()
+    website = scrapy.Field()
+    pname = scrapy.Field()

@@ -66,7 +66,7 @@ class JingDongSpider(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse_info)
 
             # 睡一会，防止被封
-            #time.sleep(random.randint(1, 3))
+            time.sleep(random.randint(1, 3))
 
             # 请求产品评价,最大取100页
             for page in range(1, 10):
@@ -91,6 +91,9 @@ class JingDongSpider(scrapy.Spider):
         item["id"] = id
         item["StockStateName"] = StockStateName
         item["vender"] = vender
+
+        item["website"] = "京东"
+
 
         # 标记，区分多个item
         item["flag"] = "info"
@@ -122,6 +125,7 @@ class JingDongSpider(scrapy.Spider):
             userLevelName = comment["userLevelName"]
             content = comment["content"]
             referenceName = comment["referenceName"]
+            referenceTime = comment["referenceTime"]
 
             item['id'] = id
             item["productId"] = productId
@@ -133,6 +137,7 @@ class JingDongSpider(scrapy.Spider):
             item['userLevelName'] = userLevelName
             item['content'] = content
             item['referenceName'] = referenceName
+            item['referenceTime'] = referenceTime
 
             # 标记，区分多个item
             item["flag"] = "comment"

@@ -29,15 +29,16 @@ class CommentPipeline(object):
             userLevelName = item["userLevelName"]
             content = item["content"].replace("\n", " ")
             referenceName = item["referenceName"]
+            referenceTime = item["referenceTime"]
 
             # 用户名MD5加密
             m = hashlib.md5()
             m.update(nickname.encode("utf-8"))
             nickname = m.hexdigest().upper()
 
-            line = "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (
+            line = "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (
                 id, productId, score, nickname, productColor, productSize, userClientShow, userLevelName, content,
-                referenceName)
+                referenceName,referenceTime)
 
             # 数据打入kafka
             self.producer.send("comment", line.encode('utf-8'))
@@ -48,8 +49,10 @@ class CommentPipeline(object):
             id = item["id"]
             StockStateName = item["StockStateName"]
             vender = item["vender"]
+            website = item["website"]
+            pname = item["pname"]
 
-            line = "%s\t%s\t%s\t%s" % (id, price, vender, StockStateName)
+            line = "%s\t%s\t%s\t%s\t%s\t%s" % (id, price, vender, StockStateName,website,pname)
 
             # 数据打入kafka
             self.producer.send("info", line.encode('utf-8'))
