@@ -47,6 +47,7 @@ class JingDongSpider(scrapy.Spider):
             # js代码  -->  xml文档对象
             src_text = js2xml.parse(src, debug=False)
             src_tree = js2xml.pretty_print(src_text)
+            print(src_tree)
 
             # xml   --->  html 文档对象
             selector = etree.HTML(src_tree)
@@ -54,9 +55,10 @@ class JingDongSpider(scrapy.Spider):
             # 使用html xpath 查找标签
 
             name = selector.xpath("//property[@name='name']/string/text()")
-            venderId = selector.xpath("//property[@name='venderId']/string/text()")
+            venderId = selector.xpath("//property[@name='venderId']/number/@value")[0]
 
-            print(name)
+
+
 
             for obj in selector.xpath("//property[@name='colorSize']/array/object"):
                 # @value  获取标签属性的值
@@ -69,16 +71,17 @@ class JingDongSpider(scrapy.Spider):
 
                 url = url % (id, venderId)
 
+                print(url)
                 yield scrapy.Request(url=url, callback=self.parse_info)
 
                 # 睡一会，防止被封
-                time.sleep(random.randint(1, 3))
+                #time.sleep(random.randint(1, 3))
 
                 # 请求产品评价,最大取100页
-                for page in range(1, 10):
+                for page in range(1, 3):
                     url = "https://sclub.jd.com/comment/productPageComments.action?callback=fetchJSON_comment98vv563" \
                           "&productId=%s&score=0&sortType=5&page=%d&pageSize=10&isShadowSku=0&rid=0&fold=1" % (id, page)
-                    yield scrapy.Request(url=url, callback=self.parse_comment)
+                    #yield scrapy.Request(url=url, callback=self.parse_comment)
 
     # 获取商品价格
     def parse_info(self, response):
