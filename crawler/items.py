@@ -23,11 +23,21 @@ class Comment(scrapy.Item):
     referenceTime = scrapy.Field()
 
 
-class ItemInfo(scrapy.Item):
+class JingDongItemInfo(scrapy.Item):
     flag = scrapy.Field()
     price = scrapy.Field()
     id = scrapy.Field()
     StockStateName = scrapy.Field()
     vender = scrapy.Field()
     website = scrapy.Field()
-    pname = scrapy.Field()
+    url = scrapy.Field()
+
+
+class GuoMeiItemInfo(scrapy.Item):
+    flag = scrapy.Field()
+    price = scrapy.Field()
+    id = scrapy.Field()
+    StockStateName = scrapy.Field()
+    vender = scrapy.Field()
+    website = scrapy.Field()
+    url = scrapy.Field()

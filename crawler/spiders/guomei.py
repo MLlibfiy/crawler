@@ -5,7 +5,7 @@ import js2xml
 import re
 import json
 import time
-from crawler.items import Comment, ItemInfo
+from crawler.items import Comment, GuoMeiItemInfo
 
 
 class GuoMeiSpider(scrapy.Spider):
@@ -115,7 +115,7 @@ class GuoMeiSpider(scrapy.Spider):
 
         pname = response.xpath("//a[@class='name']/text()")[0].extract()
 
-        item = ItemInfo()
+        item = GuoMeiItemInfo()
         item["price"] = price
         item["id"] = prdId
         item["StockStateName"] = prdName
